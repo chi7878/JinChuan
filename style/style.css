@@ -1,0 +1,146 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    line-height: 1;
+    position: relative;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.main-header {
+    width: 100%;
+    background-color: #A23D31;
+    height: 60px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.main-header-link {
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+}
+
+.main-header-link:nth-child(1) {
+    margin-right: 15px;
+}
+
+.main-banner {
+    width: 100%;
+}
+
+.main-banner-img {
+    width: 100%;
+    display: block;
+}
+
+.main-nav {
+    width: 100%;
+    height: 60px;
+    background-color: #F3A48D;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.main-nav__list {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.main-nav__item {
+    flex: 1;
+    height: 45px;
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 0 10px;
+}
+
+.main-nav__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4b4b4b;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.main-footer {
+    width: 100%;
+    height: 120px;
+    background-color: #A23D31;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-footer__text {
+    color: #fff;
+}
+
+.scroll-top {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #c8c8c8;
+    opacity: .8;
+    cursor: pointer;
+}
+
+.scroll-top:hover {
+    opacity: 1;
+}

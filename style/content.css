@@ -1,0 +1,54 @@
+p {
+    color: #282828;
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+}
+
+.content-main {
+    padding: 80px;
+    box-sizing: border-box;
+}
+
+.content-main__prize {
+    
+}
+
+.content-title {
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    color: #A23D31;
+}
+
+.content-small-title {
+    font-weight: 500;
+    font-size: 23px;
+    margin: 20px 0;
+    color: #de4937;
+}
+
+.content-tag {
+    font-size: 18px;
+    margin: 15px 0 5px 0;
+}
+
+.content-box > p {
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.content-text {
+    padding: 0;
+}
+
+.content-prize__box {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.content-prize__img:nth-child(2) {
+    margin: 0 10px;
+}
