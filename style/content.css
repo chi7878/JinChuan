@@ -23,10 +23,10 @@ p {
 }
 
 .content-small-title {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 23px;
     margin: 20px 0;
-    color: #de4937;
+    color: #A23D31;
 }
 
 .content-tag {
@@ -39,7 +39,7 @@ p {
     box-sizing: border-box;
 }
 
-.content-text {
+p.content-text {
     padding: 0;
 }
 
@@ -51,4 +51,36 @@ p {
 
 .content-prize__img:nth-child(2) {
     margin: 0 10px;
+}
+
+.content-main .text-inline {
+    display: inline-block;
+    padding: 0;
+}
+
+.content-list {
+    margin-left: 20px;
+    list-style-type: decimal;
+}
+
+.content-list_reduce {
+    margin-left: 40px;
+}
+
+
+.content-prize__top-img {
+    max-width: 900px;
+    width: 80%;
+}
+
+.content-prize__img {
+    max-width: 200px;
+    width: 25.8%;
+}
+
+@media screen and (max-width: 992px) {
+    .content-main__prize {
+        padding: 20px;
+    }
+    
 }
