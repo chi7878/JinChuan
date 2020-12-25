@@ -71,16 +71,26 @@ p.content-text {
 .content-prize__top-img {
     max-width: 900px;
     width: 80%;
+    height: auto;
 }
 
 .content-prize__img {
     max-width: 200px;
     width: 25.8%;
+    height: auto;
+}
+
+.content-link {
+    word-wrap: break-word;
 }
 
 @media screen and (max-width: 992px) {
     .content-main__prize {
         padding: 20px;
+    }
+
+    .content-main {
+        padding: 40px 20px;
     }
     
 }

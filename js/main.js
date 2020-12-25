@@ -4,7 +4,7 @@ $(document).ready(function () {
         $(".block-carousel").slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay: false,
+            autoplay: true,
             autoplaySpeed: 2000,
             pauseOnFocus: false,
             dots: true,
