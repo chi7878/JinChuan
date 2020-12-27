@@ -67,12 +67,14 @@ p.content-text {
 .content-prize__top-img {
     max-width: 900px;
     width: 80%;
+    align-self: flex-start;
 }
 
 .content-prize__img {
     max-width: 293px;
     width: 25.8%;
     height: auto;
+    align-self: flex-start;
 }
 
 .content-link {
