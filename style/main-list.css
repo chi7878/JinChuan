@@ -71,6 +71,7 @@
     box-sizing: border-box;
     cursor: pointer;
     outline: none;
+    padding: 0;
 }
 
 .dots-item > .slick-active {
@@ -154,6 +155,8 @@
     margin-top: 15px;
     margin-bottom: 20px;
     font-size: 17px;
+    color: #A23D31;
+    font-weight: 700;
 }
 
 .block-list__button {
@@ -190,6 +193,15 @@
         width: 170px;
         margin: 15px;
     }
+
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .dots-item { 
+        bottom: 10px;
+    }
     
 }
 
@@ -202,6 +214,29 @@
     .block-list__list {
         padding: 30px 15px 30px 15px;
     } 
+
+    .block-carousel {
+        width: 95%;
+    }
+
+    .slick-dotted.slick-slider {
+        margin-bottom: 15px;
+    }
+
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .dots-item { 
+        bottom: 10px;
+    }
+    
+    .dots-item > li { 
+        width: 10px;
+        height: 10px;
+    }
+    
 }
 
 @media screen and (max-width: 384px) {
@@ -213,4 +248,12 @@
     .block-list__list {
         padding: 30px 15px 30px 15px;
     } 
+
+    .block-carousel {
+        width: 95%;
+    }
+
+    .slick-dotted.slick-slider {
+        margin-bottom: 15px;
+    }
 }
