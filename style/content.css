@@ -9,10 +9,6 @@ p {
     box-sizing: border-box;
 }
 
-.content-main__prize {
-    
-}
-
 .content-title {
     width: 100%;
     text-align: center;
@@ -71,7 +67,7 @@ p.content-text {
 .content-prize__top-img {
     max-width: 900px;
     width: 80%;
-    height: auto;
+    height: 100px;
 }
 
 .content-prize__img {
