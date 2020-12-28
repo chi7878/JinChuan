@@ -26,15 +26,27 @@
     transform: translateY(-50%);
     font-size: 0;
     outline: none;
-    background: #000;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
-    background-color: #F3A48D;
     border: none;
     opacity: .7;
     cursor: pointer;
+    padding: 0;
+    background-color: transparent;
 }
+
+.carousel-button > svg > path {
+    fill: #F3A48D;
+}
+
+.prev-button > svg {
+    transform: rotate(180deg);
+}
+
+.carousel-button:hover {
+    opacity: 1;
+}
+
 
 .prev-button {
     left: 10px;
