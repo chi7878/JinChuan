@@ -1,16 +1,6 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, iframe,h1, h2, h3,
+h4, h5, h6, p, a, i, ul, li,article, aside,
+footer, header, nav, section {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -18,9 +8,8 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+article, aside, details, footer, header,
+menu, nav, section {
 	display: block;
 }
 body {
@@ -30,17 +19,12 @@ body {
 ol, ul {
 	list-style: none;
 }
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+p, h1, h2, h3, h4, a {
+    font-family: 'Noto Sans TC', sans-serif;
 }
 
 .main-header {
@@ -54,14 +38,39 @@ table {
     justify-content: flex-end;
 }
 
-
 .main-header-link {
     display: block;
     width: 38px;
     height: 38px;
     border-radius: 50%;
     border: 1px solid #ffffff;
+    position: relative;
+    transition: all .3s;
 }
+
+.main-header-link:nth-child(1):hover {
+    background-color: #3b5998;
+    border-color: #3b5998;
+}
+
+.main-header-link:nth-child(2):hover {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+.main-header-link > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+}
+
+.main-header-link > svg > path {
+    fill: #ffffff;
+}
+
 
 .main-header-link:nth-child(1) {
     margin-right: 15px;
@@ -105,6 +114,18 @@ table {
     min-width: 150px;
 }
 
+.main-nav__item:hover {
+    background-color: #A23D31;
+}
+
+.main-nav__item:hover .main-nav__icon {
+    background-position-y: -30px;
+}
+
+.main-nav__item:hover .main-nav__icon-title {
+    background-position-y: -20px;
+}
+
 .main-nav__link {
     display: block;
     width: 100%;
@@ -116,6 +137,54 @@ table {
     text-decoration: none;
     font-size: 20px;
     font-weight: 900;
+}
+
+.main-nav__icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-image: url(../image/icon.png);
+    margin-right: 15px;
+}
+
+.main-nav__icon-title {
+    width: 90px;
+    height: 20px;
+    display: block;
+    background-image: url(../image/icon.png);
+}
+
+.main-nav__icon_vote {
+    background-position: 0 0;
+}
+
+.main-nav__icon_prize {
+    background-position: -30px 0;
+}
+
+.main-nav__icon_activity {
+    background-position: -60px 0;
+}
+
+.main-nav__icon_news {
+    background-position: -90px 0;
+}
+
+.main-nav__icon-title_vote {
+    background-position: -120px -1px;
+}
+
+.main-nav__icon-title_prize {
+    background-position: -211px -1px;
+    width: 115px;
+}
+
+.main-nav__icon-title_activity {
+    background-position: -326px 0;
+}
+
+.main-nav__icon-title_news {
+    background-position: -415px 0;
 }
 
 .main-footer {
@@ -156,23 +225,19 @@ table {
     stroke-linejoin:round;
 }
 
-
-@media screen and (min-width: 992px) and (max-width: 1280px) {
-
-}
-
-@media screen and (min-width: 768px) and (max-width: 992px) {
-    
-}
-
-
 @media screen and (max-width: 768px) {
     .main-header {
         height: 40px;
+        padding-right: 20px;
     }
 
     .main-header-link {
         width: 25px;
         height: 25px;
+    }
+
+    .scroll-top {
+        right: 20px;
+        bottom: 30px;
     }
 }
