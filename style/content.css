@@ -9,6 +9,16 @@ p {
     box-sizing: border-box;
 }
 
+.content-main_prize {
+    padding: 80px 0;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.content-main_prize .content-text {
+    font-size: 20px;
+}
+
 .content-title {
     width: 100%;
     text-align: center;
@@ -16,6 +26,12 @@ p {
     font-weight: 700;
     margin-bottom: 30px;
     color: #A23D31;
+}
+
+.content-title_prize {
+    color: #ffffff;
+    font-weight: 500;
+    text-align: left;
 }
 
 .content-small-title {
@@ -89,8 +105,18 @@ p.content-text {
 }
 
 @media screen and (max-width: 992px) {
-    .content-main__prize {
-        padding: 20px;
+    .content-main__prize-img {
+        padding: 16px;
+    }
+
+    .content-main_prize {
+        padding: 40px 20px;        
+        width: 100%;
+        margin: 0;
+    }
+
+    .content-main_prize .content-text {
+        font-size: 15px;
     }
 
     .content-main {

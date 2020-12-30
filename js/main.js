@@ -29,6 +29,15 @@ $(document).ready(function () {
     // scroll top
     $(".scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, 600));
 
+    //scrollbar
+
+    $(".main-nav__list").overlayScrollbars({ 
+        overflowBehavior : {
+            x : "scroll",
+            y : "hidden"
+        },
+    });
+
     //facebook sdk
     const id = '479161903483864';
     const homeLink = 'https://localhost:5500/';
