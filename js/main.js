@@ -31,16 +31,16 @@ $(document).ready(function () {
 
     //scrollbar
 
-    $(".main-nav__list").overlayScrollbars({ 
-        overflowBehavior : {
-            x : "scroll",
-            y : "hidden"
+    $(".main-nav__list").overlayScrollbars({
+        overflowBehavior: {
+            x: "scroll",
+            y: "hidden",
         },
     });
 
     //facebook sdk
-    const id = '479161903483864';
-    const homeLink = 'https://localhost:5500/';
+    const id = "479161903483864";
+    const homeLink = "https://localhost:5502/";
     console.log(window.location.href);
 
     window.fbAsyncInit = () => {
@@ -48,14 +48,14 @@ $(document).ready(function () {
             appId: id,
             cookie: true,
             xfbml: true,
-            version: 'v9.0',
+            version: "v9.0",
         });
-    
+
         FB.AppEvents.logPageView();
     };
-    
+
     ((d, s, id) => {
-        var js,fjs = d.getElementsByTagName(s)[0];
+        var js, fjs = d.getElementsByTagName(s)[0];
 
         if (d.getElementById(id)) {
             return;
@@ -63,28 +63,45 @@ $(document).ready(function () {
 
         js = d.createElement(s);
         js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js';
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
-    
-    $('.block-list__button').click(() => {
-        FB.getLoginStatus(response => {
+    })(document, "script", "facebook-jssdk");
+
+    $(".block-list__button").click((event) => {
+        FB.getLoginStatus((response) => {
             switch (response.status) {
-                case 'not_authorized':
-                case 'unknown':
-                    alert('請先登入Facebook');
-                    window.location = encodeURI(`https://www.facebook.com/dialog/oauth?client_id=${id}&redirect_uri=${encodeURI(homeLink)}&response_type=token&scope=email`);
+                case "not_authorized":
+                case "unknown":
+                    $(".login-alert-popup").css({ display: "block" });
+                    setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
+                    
                     break;
                 default:
-                    FB.api("/me?fields=name,id", (response) => {
-                        console.log(response, '有登入了');
+                    $(".login-vote-popup").css({ display: "block" });
+                    setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+
+                    FB.api("/me?fields=name,id,email,picture", (res) => {
+                        console.log(res, response, "有登入了");
                     });
+
                     break;
             }
         });
-    })
+    });
 
-    if (window.location.href.indexOf('#access_token=') !== -1) {
+    $(".login-alert-popup__button").click(() => {
+        window.location = encodeURI(
+            `https://www.facebook.com/dialog/oauth?client_id=${id}&redirect_uri=${
+            encodeURI(homeLink)}&response_type=token&scope=email`
+        );
+    });
+
+    $(".login-alert-popup__close").click(() => {
+        $(".login-alert-popup").removeClass("popup-show");
+        setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
+    });
+
+    if (window.location.href.indexOf("#access_token=") !== -1) {
         window.location.href = homeLink;
     }
 });
