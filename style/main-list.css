@@ -146,7 +146,7 @@
 
 .block-list__img {
     height: 130%;
-    justify-content: flex-start;
+    align-self: flex-start;
 }
 
 .block-carousel__wrapper {
