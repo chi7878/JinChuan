@@ -4,8 +4,6 @@ $(document).ready(function () {
         $(".block-carousel").slick({
             slidesToShow: 1,
             slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
             pauseOnFocus: false,
             dots: true,
             centerMode: true,
@@ -104,4 +102,17 @@ $(document).ready(function () {
     if (window.location.href.indexOf("#access_token=") !== -1) {
         window.location.href = homeLink;
     }
+
+    $.ajax({
+        type: "get",
+        url: `http://dduskawqadi.2020-21taiwanhotspring.net/hotspring`,
+        dataType: "json",
+        success: function (response) {
+            console.log('success', thrownError);
+        },
+        error: function (thrownError) {
+            console.log('error', thrownError);
+        }
+    });
+
 });

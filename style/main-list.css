@@ -135,8 +135,17 @@
     margin: 25px
 }
 
-.block-list__img {
+.block-list__img-box {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    max-height: 120px;
+}
+
+.block-list__img {
+    height: 130%;
 }
 
 .block-carousel__wrapper {
