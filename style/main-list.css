@@ -137,16 +137,17 @@
 
 .block-list__img-box {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     overflow: hidden;
     max-height: 120px;
 }
 
 .block-list__img {
     height: 130%;
-    align-self: flex-start;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .block-carousel__wrapper {
