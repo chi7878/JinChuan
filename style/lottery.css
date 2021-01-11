@@ -1,0 +1,178 @@
+main {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 500px;
+    background-color: #fff2f2;
+}
+
+.lottery-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.dropdown {
+    position: relative;
+    width: 200px;
+}
+
+.dropdown-box {
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #A23D31;
+    cursor: pointer;
+}
+
+.dropdown-box__title {
+    font-size: 20px;
+}
+
+.icn-dropdown {
+    width: 10px;
+    height: 10px;
+    stroke: #A23D31;
+    stroke-width: 1px;
+}
+
+.dropdown-list {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    box-shadow: 0 0 10px #00000030;
+    background-color: #ffffff;
+    width: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 150px;
+    z-index: 99;
+}
+
+.dropdown-list-scroll {
+    max-height: 150px;
+}
+
+.dropdown-item {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #F3A48D50;
+}
+
+.lottery-btn {
+    margin-left: 30px;
+    width: 80px;
+    height: 30px;
+    border-radius: 500px;
+    border: none;
+    outline: none;
+    background-color: #A23D31;
+    color: #ffffff;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.lottery-prize-box {
+    width: 100%;
+}
+
+.lottery-list-box {
+    width: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.lottery-title-box {
+    width: 40%;
+    background-color: #F3A48D;    
+    color: #2b2b2b;
+    border-radius: 50px;  
+    padding: 15px 0;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.lottery-title {
+    font-size: 20px;
+}
+
+.lottery-list {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lottery-item {
+    width: 250px;
+    height: 80px;
+    box-shadow: 0 0 10px #00000030;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #fff;
+    margin: 10px 15px 10px;
+}
+
+.lottery-img-box {
+    width: 50px;
+    height: 50px;
+    background-color: #c8c8c8;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.lottery-name {
+    margin-bottom: 5px;
+    font-size: 17px;
+    height: 20px;
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    color: #2b2b2b;
+}
+
+.lottery-email {
+    height: 19px;
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    color: #2b2b2b;
+}
+
+.lottery-clear-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+}

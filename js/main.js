@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    const id = "479161903483864";
+    const returnHomeLink = "https://localhost:5502/";
+    const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
+    const hasLogin = false;
+
+    getHotspring();
+
     // carousel
     if ($(".block-carousel").length !== 0) {
         $(".block-carousel").slick({
@@ -28,7 +35,6 @@ $(document).ready(function () {
     $(".scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, 600));
 
     //scrollbar
-
     $(".main-nav__list").overlayScrollbars({
         overflowBehavior: {
             x: "scroll",
@@ -37,10 +43,6 @@ $(document).ready(function () {
     });
 
     //facebook sdk
-    const id = "479161903483864";
-    const homeLink = "https://localhost:5502/";
-    console.log(window.location.href);
-
     window.fbAsyncInit = () => {
         FB.init({
             appId: id,
@@ -66,6 +68,19 @@ $(document).ready(function () {
     })(document, "script", "facebook-jssdk");
 
     $(".block-list__button").click((event) => {
+        $(".login-vote-popup-success").hide();
+        $(".login-vote-popup-error").hide();
+        $(".login-vote-popup").css({ display: "block" });
+        setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+
+        if (this.hasLogin) {
+            checkVote(event.target.value);
+        } else {
+            getLogin(event.target.value);
+        }
+
+        return;
+
         FB.getLoginStatus((response) => {
             switch (response.status) {
                 case "not_authorized":
@@ -75,12 +90,19 @@ $(document).ready(function () {
                     
                     break;
                 default:
+                    $(".login-vote-popup-success").hide();
+                    $(".login-vote-popup-error").hide();
                     $(".login-vote-popup").css({ display: "block" });
                     setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
-
-                    FB.api("/me?fields=name,id,email,picture", (res) => {
-                        console.log(res, response, "有登入了");
-                    });
+            
+                    if (this.hasLogin) {
+                        checkVote(event.target.value);
+                    } else {
+                        FB.api("/me?fields=name,id,email,picture", (res) => {
+                            console.log(res, response, "有登入了");
+                            getLogin(event.target.value);
+                        });
+                    }
 
                     break;
             }
@@ -90,7 +112,7 @@ $(document).ready(function () {
     $(".login-alert-popup__button").click(() => {
         window.location = encodeURI(
             `https://www.facebook.com/dialog/oauth?client_id=${id}&redirect_uri=${
-            encodeURI(homeLink)}&response_type=token&scope=email`
+            encodeURI(returnHomeLink)}&response_type=token&scope=email`
         );
     });
 
@@ -100,19 +122,85 @@ $(document).ready(function () {
     });
 
     if (window.location.href.indexOf("#access_token=") !== -1) {
-        window.location.href = homeLink;
+        window.location.href = returnHomeLink;
     }
 
-    $.ajax({
-        type: "get",
-        url: `http://dduskawqadi.2020-21taiwanhotspring.net/hotspring`,
-        dataType: "json",
-        success: function (response) {
-            console.log('success', thrownError);
-        },
-        error: function (thrownError) {
-            console.log('error', thrownError);
-        }
-    });
 
+    //溫泉列表
+    function getHotspring() {
+        $.ajax({
+            type: "GET",
+            url: `${apiTitle}/hotspring`,
+            dataType: "json",
+            success: function (response) {
+                $('.block-list__item-content').each((item, value) => {
+                    const voteCount = response.data.find(ele => {
+                        return ele.HotspringId.toString() === $(value).children('.block-list__button').val();
+                    }).VoteCount;
+                    $(value).children('.block-list__item-text').text(`${voteCount}票`);
+                })
+            }
+        });
+    }
+
+    const data = {
+        id: "3506866172766595",
+        name: "曾昱麒",
+        email: "percy860407@yahoo.com.tw",
+        photo: "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3506866172766595&height=50&width=50&ext=1612616061&hash=AeTt-n_N5si6P2OQNDc",
+        token: "EAAGzy5MMC9gBAKer80q8BeXQWVjAMz5NzZCu685kt2NPBVPtYGkXzZAZBoKZAcXsCjOGc7ZCoFvOAipykxfQAp8quyNLp7PQHHK2JiqtbHMnZAOVS5Q5f0enhtGG9ykaWeHZCunp24pxNI3nguaoLZAS1ZAeB0EurxLDzPeRfByxEh4ZA74me8kqYUk3kNjZByZBZCmMAMWZBAIJ2ZBAAZDZD",
+    };
+
+    // login
+    function getLogin(id) {
+        $.ajax({
+            type: "POST",
+            url: `${apiTitle}/user_login`,
+            dataType: "json",
+            data : {
+                facebook_id: "123456789123456789",
+                facebook_name: "test01",
+                facebook_email: "123456@gmail.com",
+                facebook_avatar: "123123123",
+                facebook_token: "456789456789",
+            },
+            success: function (response) {
+                console.log('success', response);
+                this.hasLogin = true;
+                checkVote(id);
+            },
+            error: function (error) {
+                console.log('error', error);
+            },
+        });
+    }
+
+    // check 
+    function checkVote(id) {
+        $.ajax({
+            type: "GET",
+            url: `${apiTitle}/check_and_vote/${id}`,
+            dataType: "json",
+            success: function (response) {
+                $(".login-vote-popup__loading").hide();
+                $(".login-vote-popup-success").show();
+                $(".login-vote-popup__text").text(`投票成功!!`);
+
+                setTimeout(() => {
+                    $(".login-vote-popup").removeClass("popup-show");
+                    setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+                }, 1800);
+            },
+            error: function () {
+                $(".login-vote-popup__loading").hide();
+                $(".login-vote-popup-error").show();
+                $(".login-vote-popup__text").text(`投票次數已滿!!`);
+
+                setTimeout(() => {
+                    $(".login-vote-popup").removeClass("popup-show");
+                    setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+                }, 2000);
+            }
+        });
+    }
 });
