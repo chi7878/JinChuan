@@ -2,7 +2,15 @@ $(document).ready(function () {
     const id = "479161903483864";
     const returnHomeLink = "https://localhost:5502/";
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
-    const hasLogin = false;
+    let hasLogin = false;
+    const lastDay = "2021/03/31";
+    const data = {
+        id: "",
+        name: "",
+        email: "",
+        photo: "",
+        token: "",
+    };
 
     getHotspring();
 
@@ -68,45 +76,52 @@ $(document).ready(function () {
     })(document, "script", "facebook-jssdk");
 
     $(".block-list__button").click((event) => {
-        $(".login-vote-popup-success").hide();
-        $(".login-vote-popup-error").hide();
-        $(".login-vote-popup").css({ display: "block" });
-        setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+        if (new Date(lastDay).getTime() <= new Date().getTime()) {
+            $(".login-vote-popup__loading").hide();
+            $(".login-vote-popup-success").hide();
+            $(".login-vote-popup-error").show();
+            $(".login-vote-popup__text").text(`投票活動已結束!!`);
+            $(".login-vote-popup").css({ display: "block" });
+            setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
 
-        if (this.hasLogin) {
-            checkVote(event.target.value);
+            setTimeout(() => {
+                $(".login-vote-popup").removeClass("popup-show");
+                setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+            }, 3000);
+
+            return;
         } else {
-            getLogin(event.target.value);
+            FB.getLoginStatus((response) => {
+                switch (response.status) {
+                    case "not_authorized":
+                    case "unknown":
+                        $(".login-alert-popup").css({ display: "block" });
+                        setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
+                        
+                        break;
+                    default:
+                        $(".login-vote-popup-success").hide();
+                        $(".login-vote-popup-error").hide();
+                        $(".login-vote-popup").css({ display: "block" });
+                        setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+                
+                        if (this.hasLogin) {
+                            checkVote(event.target.value);
+                        } else {
+                            FB.api("/me?fields=name,id,email,picture", (res) => {
+                                data.id = res.id;
+                                data.name = res.name;
+                                data.email = res.email;
+                                data.photo = res.picture.data.url;
+                                data.token = response.authResponse.accessToken;
+                                getLogin(event.target.value);
+                            });
+                        }
+    
+                        break;
+                }
+            });
         }
-
-        return;
-
-        FB.getLoginStatus((response) => {
-            switch (response.status) {
-                case "not_authorized":
-                case "unknown":
-                    $(".login-alert-popup").css({ display: "block" });
-                    setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
-                    
-                    break;
-                default:
-                    $(".login-vote-popup-success").hide();
-                    $(".login-vote-popup-error").hide();
-                    $(".login-vote-popup").css({ display: "block" });
-                    setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
-            
-                    if (this.hasLogin) {
-                        checkVote(event.target.value);
-                    } else {
-                        FB.api("/me?fields=name,id,email,picture", (res) => {
-                            console.log(res, response, "有登入了");
-                            getLogin(event.target.value);
-                        });
-                    }
-
-                    break;
-            }
-        });
     });
 
     $(".login-alert-popup__button").click(() => {
@@ -143,14 +158,6 @@ $(document).ready(function () {
         });
     }
 
-    const data = {
-        id: "3506866172766595",
-        name: "曾昱麒",
-        email: "percy860407@yahoo.com.tw",
-        photo: "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3506866172766595&height=50&width=50&ext=1612616061&hash=AeTt-n_N5si6P2OQNDc",
-        token: "EAAGzy5MMC9gBAKer80q8BeXQWVjAMz5NzZCu685kt2NPBVPtYGkXzZAZBoKZAcXsCjOGc7ZCoFvOAipykxfQAp8quyNLp7PQHHK2JiqtbHMnZAOVS5Q5f0enhtGG9ykaWeHZCunp24pxNI3nguaoLZAS1ZAeB0EurxLDzPeRfByxEh4ZA74me8kqYUk3kNjZByZBZCmMAMWZBAIJ2ZBAAZDZD",
-    };
-
     // login
     function getLogin(id) {
         $.ajax({
@@ -165,13 +172,9 @@ $(document).ready(function () {
                 facebook_token: "456789456789",
             },
             success: function (response) {
-                console.log('success', response);
                 this.hasLogin = true;
                 checkVote(id);
-            },
-            error: function (error) {
-                console.log('error', error);
-            },
+            }
         });
     }
 
