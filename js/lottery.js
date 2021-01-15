@@ -31,7 +31,7 @@ $(document).ready(function () {
         $('.dropdown-box__title').text(selectPrize);
     })
 
-    $('.lottery-btn').click(function (e) { 
+    $('.lottery-btn_vote').click(function (e) { 
         const select = prizeData.find(item => item.name === selectPrize);
 
         if (select.list.length === 0) {
@@ -78,13 +78,31 @@ $(document).ready(function () {
                 </div>
                 <ul class="lottery-list">`;
 
+                
                 domText += item.list.map(ele => {
+                    const find = ele.email.lastIndexOf('@');
+                    let a = ele.email.substring(0, find);
+                    let b = ele.email.substring(find);;
+                    let replaceStr = "";
+                    for(var i in a){
+                        replaceStr += (i > 1 && i < a.length - 1) ? "*" : a[i];
+                    }
+
+                    if (ele.name) {
+                        let c = ele.name[0];
+                        let d = ele.name[ele.name.length - 1];
+                        let replaceStrName = "";
+                        for (let i = 0; i < ele.name.length - 2; i++ ) replaceStrName += '*';
+                    }
+
                     return `
                     <li class="lottery-item">
-                        <div class="lottery-img-box"></div>
+                        <div class="lottery-img-box">
+                        <img class="lottery-img" src="${!ele.avatar ? '' : ele.avatar}" alt="">
+                        </div>
                         <div class="lottery-text-box">
-                            <p class="lottery-name">我是誰</p>
-                            <p class="lottery-email" title="${ele.email}">${ele.email}</p>
+                            <p class="lottery-name">${!ele.name ? '' : `${c}${replaceStrName}${d}`}</p>
+                            <p class="lottery-email" title="${replaceStr + b}">${replaceStr + b}</p>
                         </div>
                     </li>`;
                 }).join(" ");
