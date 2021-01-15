@@ -164,13 +164,7 @@ $(document).ready(function () {
             type: "POST",
             url: `${apiTitle}/user_login`,
             dataType: "json",
-            data : {
-                facebook_id: "123456789123456789",
-                facebook_name: "test01",
-                facebook_email: "123456@gmail.com",
-                facebook_avatar: "123123123",
-                facebook_token: "456789456789",
-            },
+            data : data,
             success: function (response) {
                 this.hasLogin = true;
                 checkVote(id);
@@ -188,6 +182,7 @@ $(document).ready(function () {
                 $(".login-vote-popup__loading").hide();
                 $(".login-vote-popup-success").show();
                 $(".login-vote-popup__text").text(`投票成功!!`);
+                getHotspring();
 
                 setTimeout(() => {
                     $(".login-vote-popup").removeClass("popup-show");
