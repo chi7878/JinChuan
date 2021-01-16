@@ -5,11 +5,11 @@ $(document).ready(function () {
     let hasLogin = false;
     const lastDay = "2021/03/31";
     const data = {
-        id: "",
-        name: "",
-        email: "",
-        photo: "",
-        token: "",
+        facebook_id: "",
+        facebook_name: "",
+        facebook_email: "",
+        facebook_avatar: "",
+        facebook_token: "",
     };
 
     getHotspring();
@@ -109,11 +109,11 @@ $(document).ready(function () {
                             checkVote(event.target.value);
                         } else {
                             FB.api("/me?fields=name,id,email,picture", (res) => {
-                                data.id = res.id;
-                                data.name = res.name;
-                                data.email = res.email;
-                                data.photo = res.picture.data.url;
-                                data.token = response.authResponse.accessToken;
+                                data.facebook_id = res.id;
+                                data.facebook_name = res.name;
+                                data.facebook_email = res.email;
+                                data.facebook_avatar = res.picture.data.url;
+                                data.facebook_token = response.authResponse.accessToken;
                                 getLogin(event.target.value);
                             });
                         }
