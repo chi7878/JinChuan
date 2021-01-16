@@ -102,6 +102,8 @@ $(document).ready(function () {
                     default:
                         $(".login-vote-popup-success").hide();
                         $(".login-vote-popup-error").hide();
+                        $(".login-vote-popup__loading").show();
+                        $(".login-vote-popup__text").text(`投票中...`);
                         $(".login-vote-popup").css({ display: "block" });
                         setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
                 
