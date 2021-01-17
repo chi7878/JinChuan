@@ -2,19 +2,19 @@ $(document).ready(function () {
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let selectPrize = '頭獎';
     const prizeData = [
-        { name: '頭獎', num: 1, list: [] },
-        { name: '二獎', num: 4, list: [] },
-        { name: '三獎', num: 1, list: [] },
-        { name: '四獎', num: 1, list: [] },
-        { name: '五獎', num: 2, list: [] },
-        { name: '六獎', num: 2, list: [] },
-        { name: '七獎', num: 2, list: [] },
-        { name: '八獎', num: 2, list: [] },
-        { name: '九獎', num: 10, list: [] },
-        { name: '十獎', num: 10, list: [] },
-        { name: '十一獎', num: 10, list: [] },
-        { name: '十二獎', num: 10, list: [] },
-        { name: '十三獎', num: 100, list: [] },
+        { name: '頭獎',prize: 'IPhone 12 mini(1名)' , num: 1, list: [{email: 'asdasdasdasd@sadasd', name: 'sadsadas'}] },
+        { name: '二獎', prize: '北投老爺酒店 (一泊一食住宿券)(4名)', num: 4, list: [] },
+        { name: '三獎', prize: '國蘭花園Villa會館-水漾Villa (一泊一食住宿券)(1名)', num: 1, list: [] },
+        { name: '四獎', prize: '清泉日式溫泉館-沁呂 (一泊一食住宿券)(1名)', num: 1, list: [] },
+        { name: '五獎', prize: '清泉日式溫泉館-京都 (一泊一食住宿券)(2名)', num: 2, list: [] },
+        { name: '六獎', prize: 'Apple AirPods(2名)', num: 2, list: [] },
+        { name: '七獎', prize: 'GARMIN Vivofit 4(2名)', num: 2, list: [] },
+        { name: '八獎', prize: 'The North Face超輕耐磨多功能側背包3L.單肩包(2名)', num: 2, list: [] },
+        { name: '九獎', prize: '關子嶺統茂泡湯券(平日)(10名)', num: 10, list: [] },
+        { name: '十獎', prize: '四重溪泡湯券(10名)', num: 10, list: [] },
+        { name: '十一獎', prize: '龜丹溫泉泡湯券(平假日皆可使用)(10名)', num: 10, list: [] },
+        { name: '十二獎', prize: '加賀屋泡湯券(10名)', num: 10, list: [] },
+        { name: '十三獎', prize: '全家100元禮物卡(100名)', num: 100, list: [] },
     ]
 
     $(".dropdown-list").hide();
@@ -30,7 +30,7 @@ $(document).ready(function () {
         $('.dropdown-box__title').text(selectPrize);
     })
 
-    $('.lottery-btn_vote').click(function (e) { 
+    $('.lottery-btn_vote').click(function (e) {
         const select = prizeData.find(item => item.name === selectPrize);
 
         if (select.list.length === 0) {
@@ -73,6 +73,7 @@ $(document).ready(function () {
                 domText += `
                 <div class="lottery-title-box">
                     <p class="lottery-title">${item.name}</p>
+                    <p class="lottery-title">${item.prize}</p>
                     <button class="lottery-clear-btn" value="${item.name}">
                         <svg class="lottery-clear-btn__svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="redo-alt" class="svg-inline--fa fa-redo-alt fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"></path></svg>
                     </button>
