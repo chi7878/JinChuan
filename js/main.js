@@ -4,17 +4,10 @@ $(document).ready(function () {
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let hasLogin = false;
     const lastDay = "2021/03/31";
-    const data = {
-        facebook_id: "",
-        facebook_name: "",
-        facebook_email: "",
-        facebook_avatar: "",
-        facebook_token: "",
-    };
+    const data = {};
 
     getHotspring();
 
-    // carousel
     if ($(".block-carousel").length !== 0) {
         $(".block-carousel").slick({
             slidesToShow: 1,
@@ -33,16 +26,13 @@ $(document).ready(function () {
         });
     }
 
-    // scroll button top hidden
     $(".scroll-top").hide();
     $(window).scroll(function (event) {
         $(document).scrollTop().valueOf() < 150 ? $(".scroll-top").hide() : $(".scroll-top").show();
     });
 
-    // scroll top
     $(".scroll-top").click(() => $("html, body").animate({ scrollTop: 0 }, 600));
 
-    //scrollbar
     $(".main-nav__list").overlayScrollbars({
         overflowBehavior: {
             x: "scroll",
@@ -50,7 +40,6 @@ $(document).ready(function () {
         },
     });
 
-    //facebook sdk
     window.fbAsyncInit = () => {
         FB.init({
             appId: id,
@@ -143,7 +132,6 @@ $(document).ready(function () {
     }
 
 
-    //溫泉列表
     function getHotspring() {
         $.ajax({
             type: "GET",
@@ -160,7 +148,6 @@ $(document).ready(function () {
         });
     }
 
-    // login
     function getLogin(id) {
         $.ajax({
             type: "POST",
@@ -170,11 +157,25 @@ $(document).ready(function () {
             success: function (response) {
                 hasLogin = true;
                 checkVote(id);
+            },
+            error: function (error) {
+                if (error.responseJSON.message === "Unknow facebook user") {
+                    $(".login-vote-popup__loading").hide();
+                    $(".login-vote-popup-success").hide();
+                    $(".login-vote-popup-error").show();
+                    $(".login-vote-popup__text").text(`Facebook登入錯誤請重整!!`);
+                    $(".login-vote-popup").css({ display: "block" });
+                    setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+        
+                    setTimeout(() => {
+                        $(".login-vote-popup").removeClass("popup-show");
+                        setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+                    }, 3000);
+                }
             }
         });
     }
 
-    // check 
     function checkVote(id) {
         $.ajax({
             type: "GET",
