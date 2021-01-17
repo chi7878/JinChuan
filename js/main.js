@@ -107,7 +107,7 @@ $(document).ready(function () {
                         $(".login-vote-popup").css({ display: "block" });
                         setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
                 
-                        if (this.hasLogin) {
+                        if (hasLogin) {
                             checkVote(event.target.value);
                         } else {
                             FB.api("/me?fields=name,id,email,picture", (res) => {
@@ -168,7 +168,7 @@ $(document).ready(function () {
             dataType: "json",
             data : data,
             success: function (response) {
-                this.hasLogin = true;
+                hasLogin = true;
                 checkVote(id);
             }
         });
@@ -191,15 +191,19 @@ $(document).ready(function () {
                     setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
                 }, 1800);
             },
-            error: function () {
-                $(".login-vote-popup__loading").hide();
-                $(".login-vote-popup-error").show();
-                $(".login-vote-popup__text").text(`投票次數已滿!!`);
-
-                setTimeout(() => {
-                    $(".login-vote-popup").removeClass("popup-show");
-                    setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
-                }, 2000);
+            error: function (error) {
+                if (error.responseJSON.message === "Please login") {
+                    getLogin(id);
+                } else {
+                    $(".login-vote-popup__loading").hide();
+                    $(".login-vote-popup-error").show();
+                    $(".login-vote-popup__text").text(`投票次數已滿!!`);
+    
+                    setTimeout(() => {
+                        $(".login-vote-popup").removeClass("popup-show");
+                        setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+                    }, 2000);
+                }
             }
         });
     }
