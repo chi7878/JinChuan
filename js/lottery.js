@@ -2,7 +2,7 @@ $(document).ready(function () {
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let selectPrize = '頭獎';
     const prizeData = [
-        { name: '頭獎',prize: 'IPhone 12 mini(1名)' , num: 1, list: [{email: 'asdasdasdasd@sadasd', name: 'sadsadas'}] },
+        { name: '頭獎',prize: 'IPhone 12 mini(1名)' , num: 1, list: [] },
         { name: '二獎', prize: '北投老爺酒店 (一泊一食住宿券)(4名)', num: 4, list: [] },
         { name: '三獎', prize: '國蘭花園Villa會館-水漾Villa (一泊一食住宿券)(1名)', num: 1, list: [] },
         { name: '四獎', prize: '清泉日式溫泉館-沁呂 (一泊一食住宿券)(1名)', num: 1, list: [] },
@@ -90,7 +90,7 @@ $(document).ready(function () {
                         replaceStr += (i > 1 && i < a.length - 1) ? "*" : a[i];
                     }
 
-                    if (ele.name) {
+                    if (ele.name !== null) {
                         let c = ele.name[0];
                         let d = ele.name[ele.name.length - 1];
                         let replaceStrName = "";
@@ -103,7 +103,7 @@ $(document).ready(function () {
                         <img class="lottery-img" src="${!ele.avatar ? '' : ele.avatar}" alt="">
                         </div>
                         <div class="lottery-text-box">
-                            <p class="lottery-name">${!ele.name ? '' : `${c}${replaceStrName}${d}`}</p>
+                            <p class="lottery-name">${ele.name === null ? '' : `${c}${replaceStrName}${d}`}</p>
                             <p class="lottery-email" title="${replaceStr + b}">${replaceStr + b}</p>
                         </div>
                     </li>`;

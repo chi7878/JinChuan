@@ -187,7 +187,7 @@ $(document).ready(function () {
                 $(".login-vote-popup__text").text(`投票成功!!`);
                 getHotspring();
 
-                setTimeout(() => {
+                setTimeout(() => { 
                     $(".login-vote-popup").removeClass("popup-show");
                     setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
                 }, 1800);
