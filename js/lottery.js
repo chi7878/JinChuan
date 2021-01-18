@@ -86,14 +86,20 @@ $(document).ready(function () {
                     let a = ele.email.substring(0, find);
                     let b = ele.email.substring(find);;
                     let replaceStr = "";
+
                     for(var i in a){
                         replaceStr += (i > 1 && i < a.length - 1) ? "*" : a[i];
                     }
 
+                    let c = "";
+                    let d = "";
+                    let replaceStrName = "";
+
                     if (ele.name !== null) {
-                        let c = ele.name[0];
-                        let d = ele.name[ele.name.length - 1];
-                        let replaceStrName = "";
+                        c = ele.name[0];
+                        d = ele.name[ele.name.length - 1];
+                        replaceStrName = "";
+
                         for (let i = 0; i < ele.name.length - 2; i++ ) replaceStrName += '*';
                     }
 
