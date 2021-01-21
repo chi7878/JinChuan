@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const id = "164404645116448";
-    const returnHomeLink = "https://localhost:5500/";
+    const returnHomeLink = "https://www.2020-21taiwanhotspring.net/";
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let hasLogin = false;
     const lastDay = "2021/03/31";
