@@ -245,6 +245,10 @@
     font-size: 20px;
 }
 
+.fb-login-button {
+    margin-top: 20px;
+}
+
 .login-alert-popup__button {
     width: 200px;
     height: 30px;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"> 
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">     -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">    
     <title>2020-21台灣好湯票選活動</title>
 </head>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
 <script src="js/jquery.overlayScrollbars.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/main.js"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0&appId=164404645116448&autoLogAppEvents=1" nonce="fD8ZJrnP"></script>
 <body>
     <header class="main-header">
         <a href="https://www.facebook.com/taiwanhotspring" class="main-header-link">
@@ -59,18 +60,18 @@
     </nav>
     <main class="main-list">
         <article class="block-carousel-box">
-            <div class="block-carousel">
+            <!-- <div class="block-carousel">
                 <a class="block-carousel__link">
                     <div class="block-carousel__wrapper">
-                        <iframe class="block-carousel__video" src="https://www.youtube.com/embed/6gcgaXjh_K8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+                        <iframe class="block-carousel__video" src="https://www.youtube.com/embed/6gcgaXjh_K8"></iframe>
                     </div>
                 </a>  
                 <a class="block-carousel__link">
                     <div class="block-carousel__wrapper">
-                        <iframe class="block-carousel__video" src="https://www.youtube.com/embed/ypWpZW_rDQA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1"></iframe>
+                        <iframe class="block-carousel__video" src="https://www.youtube.com/embed/ypWpZW_rDQA"></iframe>
                     </div>
                 </a>          
-            </div>
+            </div> -->
         </article>
         <article class="block-list">
             <div class="block-list__header">
@@ -301,10 +302,11 @@
         <div class="login-alert-popup">
             <div class="login-alert-popup__box">
                 <p class="login-alert-popup__text">請先登入Facebook</p>
-                <button class="login-alert-popup__button">
+                <div class="fb-login-button" onlogin="checkLoginState()" data-width="" data-size="medium" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                <!-- <button class="login-alert-popup__button">
                     <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" class="svg-inline--fa fa-facebook-f fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
                     <p>使用 Facebook 帳號登入</p>
-                </button>
+                </button> -->
                 <button class="login-alert-popup__close">
                     <svg>
                         <path d="M1,1 L15,15 M15,1 L1,15" />
@@ -337,5 +339,9 @@
             <path d="M12,12 L38,12 M25,20 L25,40" />
         </svg>
     </div>
+    <fb:login-button 
+    scope="public_profile,email"
+    onlogin="checkLoginState();">
+  </fb:login-button>
 </body>
 </html>

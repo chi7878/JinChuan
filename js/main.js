@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const id = "164404645116448";
-    const returnHomeLink = "https://www.2020-21taiwanhotspring.net";
+    const returnHomeLink = "https://localhost:5500/";
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let hasLogin = false;
     const lastDay = "2021/03/31";
@@ -40,29 +40,23 @@ $(document).ready(function () {
         },
     });
 
-    window.fbAsyncInit = () => {
+    window.fbAsyncInit = function() {
         FB.init({
             appId: id,
             cookie: true,
             xfbml: true,
-            version: "v9.0",
+            version: 'v9.0'
         });
-
         FB.AppEvents.logPageView();
     };
 
-    ((d, s, id) => {
+    (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
-
-        if (d.getElementById(id)) {
-            return;
-        }
-
-        js = d.createElement(s);
-        js.id = id;
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
         js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
+    }(document, 'script', 'facebook-jssdk'));
 
     $(".block-list__button").click((event) => {
         if (new Date(lastDay).getTime() <= new Date().getTime()) {
@@ -81,6 +75,8 @@ $(document).ready(function () {
             return;
         } else {
             FB.getLoginStatus((response) => {
+                console.log(response);
+
                 switch (response.status) {
                     case "not_authorized":
                     case "unknown":
@@ -127,9 +123,9 @@ $(document).ready(function () {
         setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
     });
 
-    if (window.location.href.indexOf("#access_token=") !== -1) {
-        window.location.href = returnHomeLink;
-    }
+    // if (window.location.href.indexOf("#access_token=") !== -1) {
+    //     window.location.href = returnHomeLink;
+    // }
 
 
     function getHotspring() {
@@ -208,4 +204,14 @@ $(document).ready(function () {
             }
         });
     }
+
+    $('.fblogin').click(function(){
+        console.log(true)
+        this.getLogin();
+     });
 });
+
+function checkLoginState() {
+    document.querySelector('.login-alert-popup').classList.remove("popup-show");
+    setTimeout(() => document.querySelector(".login-alert-popup").style.display = "none", 400);
+}
