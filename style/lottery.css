@@ -17,7 +17,6 @@ main {
 
 .dropdown {
     position: relative;
-    margin-bottom: 20px;
     width: 200px;
 }
 
@@ -202,7 +201,18 @@ main {
 
 .btn-group {
     display: flex;
-    margin-bottom: 20px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.lottery-num {
+    width: 50px;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.lottery-num > input {
+    width: 100%;
 }
 
 @media screen and (max-width: 1280px) {

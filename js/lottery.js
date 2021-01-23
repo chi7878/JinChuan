@@ -2,19 +2,19 @@ $(document).ready(function () {
     const apiTitle = "http://dduskawqadi.2020-21taiwanhotspring.net";
     let selectPrize = '頭獎';
     const prizeData = [
-        { name: '頭獎',prize: 'IPhone 12 mini(1名)' , num: 1, list: [] },
-        { name: '二獎', prize: '北投老爺酒店 (一泊一食住宿券)(4名)', num: 4, list: [] },
-        { name: '三獎', prize: '國蘭花園Villa會館-水漾Villa (一泊一食住宿券)(1名)', num: 1, list: [] },
-        { name: '四獎', prize: '清泉日式溫泉館-沁呂 (一泊一食住宿券)(1名)', num: 1, list: [] },
-        { name: '五獎', prize: '清泉日式溫泉館-京都 (一泊一食住宿券)(2名)', num: 2, list: [] },
-        { name: '六獎', prize: 'Apple AirPods(2名)', num: 2, list: [] },
-        { name: '七獎', prize: 'GARMIN Vivofit 4(2名)', num: 2, list: [] },
-        { name: '八獎', prize: 'The North Face超輕耐磨多功能側背包3L.單肩包(2名)', num: 2, list: [] },
-        { name: '九獎', prize: '關子嶺統茂泡湯券(平日)(10名)', num: 10, list: [] },
-        { name: '十獎', prize: '四重溪泡湯券(10名)', num: 10, list: [] },
-        { name: '十一獎', prize: '龜丹溫泉泡湯券(平假日皆可使用)(10名)', num: 10, list: [] },
-        { name: '十二獎', prize: '加賀屋泡湯券(10名)', num: 10, list: [] },
-        { name: '十三獎', prize: '全家100元禮物卡(100名)', num: 100, list: [] },
+        { name: '頭獎',prize: 'IPhone 12 mini' , list: [] },
+        { name: '二獎', prize: '北投老爺酒店 (一泊一食住宿券)', num: 4, list: [] },
+        { name: '三獎', prize: '國蘭花園Villa會館-水漾Villa (一泊一食住宿券)', list: [] },
+        { name: '四獎', prize: '清泉日式溫泉館-沁呂 (一泊一食住宿券)', list: [] },
+        { name: '五獎', prize: '清泉日式溫泉館-京都 (一泊一食住宿券)', list: [] },
+        { name: '六獎', prize: 'Apple AirPods', list: [] },
+        { name: '七獎', prize: 'GARMIN Vivofit 4', list: [] },
+        { name: '八獎', prize: 'The North Face超輕耐磨多功能側背包', list: [] },
+        { name: '九獎', prize: '龜丹六二溫泉山房-泡湯券(平假日皆可使用)', list: [] },
+        { name: '十獎', prize: '關子嶺統茂溫泉會館-泡湯券(平日)', list: [] },
+        { name: '十一獎', prize: '美崙山溫泉渡假山莊泡湯券(平假日皆可使用)', list: [] },
+        { name: '十二獎', prize: '四重溪清泉日式溫泉館-泡湯券(平假日皆可使用)', list: [] },
+        { name: '十三獎', prize: '全家100元禮物卡', list: [] },
     ]
 
     $(".dropdown-list").hide();
@@ -32,11 +32,18 @@ $(document).ready(function () {
 
     $('.lottery-btn_vote').click(function (e) {
         const select = prizeData.find(item => item.name === selectPrize);
+        let num = $('.lottery-num__input').val();
+        
+        if (num.indexOf('-') !== -1 || num.indexOf('.') !== -1 || num == 0) {
+            num = 1;
+            $('.lottery-num__input').val('1');
+        }
+
 
         if (select.list.length === 0) {
             $.ajax({
                 type: "GET",
-                url: `${apiTitle}/vote/${select.name}/${select.num}`,
+                url: `${apiTitle}/vote/${select.name}/${num}`,
                 dataType: "json",
                 success: function (response) {
                     select.list = response;
