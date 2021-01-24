@@ -215,7 +215,7 @@ $(document).ready(function () {
     $('.fblogin').click(function(){
         console.log(true)
         this.getLogin();
-     });
+    });
 });
 
 function checkLoginState() {
