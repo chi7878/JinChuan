@@ -39,7 +39,6 @@ $(document).ready(function () {
             $('.lottery-num__input').val('1');
         }
 
-
         if (select.list.length === 0) {
             $.ajax({
                 type: "GET",
