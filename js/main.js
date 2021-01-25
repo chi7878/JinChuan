@@ -104,6 +104,9 @@ $(document).ready(function () {
                                 data.facebook_avatar = res.picture.data.url;
                                 data.facebook_token = response.authResponse.accessToken;
                                 // $(".login-vote-popup__text").text(`get finish`);
+                                console.log(res);
+                                $(".login-vote-popup__text").text(JSON.stringify(res));
+                                return;
                                 getLogin(event.target.value);
                             });
                         }
