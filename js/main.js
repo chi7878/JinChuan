@@ -95,7 +95,7 @@ $(document).ready(function () {
                         if (hasLogin) {
                             checkVote(event.target.value);
                         } else {
-                            $(".login-vote-popup__text").text(`get FB before`);
+                            // $(".login-vote-popup__text").text(`get FB before`);
 
                             FB.api("/me?fields=name,id,email,picture", (res) => {
                                 data.facebook_id = res.id;
@@ -103,7 +103,7 @@ $(document).ready(function () {
                                 data.facebook_email = res.email;
                                 data.facebook_avatar = res.picture.data.url;
                                 data.facebook_token = response.authResponse.accessToken;
-                                $(".login-vote-popup__text").text(`get finish`);
+                                // $(".login-vote-popup__text").text(`get finish`);
                                 getLogin(event.target.value);
                             });
                         }
@@ -155,11 +155,10 @@ $(document).ready(function () {
             data : data,
             success: function (response) {
                 hasLogin = true;
-                $(".login-vote-popup__text").text(`getLogin success`);
+                // $(".login-vote-popup__text").text(`getLogin success`);
                 checkVote(id);
             },
             error: function (error) {
-                console.log(error);
                 if (error.responseJSON && error.responseJSON.message === "Unknow facebook user") {
                     $(".login-vote-popup__loading").hide();
                     $(".login-vote-popup-success").hide();
@@ -174,7 +173,7 @@ $(document).ready(function () {
                     }, 3000);
                 }
 
-                $(".login-vote-popup__text").text(`${error.responseText ? error.responseText : 'not'} getLogin error ${error.status}/${error.status}`);
+                // $(".login-vote-popup__text").text(`${error.responseText ? error.responseText : 'not'} getLogin error ${error.status}/${error.status}`);
             }
         });
     }
