@@ -320,6 +320,9 @@
         bottom: 10px;
     }
     
+    .main-list .hotspring-img-box {
+        width: 70%;
+    }
 }
 
 @media screen and (min-width: 384px) and (max-width: 768px) {
@@ -353,7 +356,10 @@
         width: 10px;
         height: 10px;
     }
-    
+
+    .main-list .hotspring-img-box {
+        width: 90%;
+    }
 }
 
 @media screen and (max-width: 384px) {
@@ -372,6 +378,10 @@
 
     .slick-dotted.slick-slider {
         margin-bottom: 15px;
+    }
+
+    .main-list .hotspring-img-box {
+        width: 90%;
     }
 }
 
@@ -398,6 +408,15 @@
 	transform: rotate(0deg) translateX(-50%);
     transform-origin: center 100%;
 	animation: clock 3s infinite linear;
+}
+
+.hotspring-img-box {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.hotspring-img {
+    width: 100%;
 }
 
 
@@ -477,8 +496,6 @@
     animation: error-stroke .5s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
-.login-vote-popup-error__line {
-}
 
 @keyframes error-stroke {
     100% {
