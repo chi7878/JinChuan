@@ -95,18 +95,19 @@ $(document).ready(function () {
                         if (hasLogin) {
                             checkVote(event.target.value);
                         } else {
-                            $(".login-vote-popup__text").text(`get FB before`);
 
                             FB.api("/me?fields=name,id,email,picture", (res) => {
                                 data.facebook_id = res.id;
                                 data.facebook_name = res.name;
-                                data.facebook_email = res.email;
                                 data.facebook_avatar = res.picture.data.url;
                                 data.facebook_token = response.authResponse.accessToken;
-                                $(".login-vote-popup__text").text(`get finish`);
-                                console.log(res);
-                                $(".login-vote-popup__text").text(JSON.stringify(res));
-                                return;
+
+                                if (res.email) {
+                                    data.facebook_email = res.email;
+                                } else {
+                                    data.facebook_email = ``;
+                                }
+
                                 getLogin(event.target.value);
                             });
                         }
@@ -215,7 +216,6 @@ $(document).ready(function () {
     }
 
     $('.fblogin').click(function(){
-        console.log(true)
         this.getLogin();
     });
 });
