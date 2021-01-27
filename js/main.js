@@ -217,3 +217,7 @@ $(document).ready(function () {
     }
 });
 
+if (navigator.userAgent.indexOf("Line") > -1) {
+    window.location.href = `${window.location.href}?openExternalBrowser=1`;
+}
+
