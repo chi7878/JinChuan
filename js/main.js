@@ -93,11 +93,13 @@ $(document).ready(function () {
                             checkVote(event.target.value);
                         } else {
 
-                            FB.api("/me?fields=name,id,email,picture", (res) => {
+                            FB.api("/me?fields=email,name,id,picture", (res) => {
                                 data.facebook_id = res.id;
                                 data.facebook_name = res.name;
                                 data.facebook_avatar = res.picture.data.url;
                                 data.facebook_token = response.authResponse.accessToken;
+
+                                console.log(response, res);
 
                                 if (res.email) {
                                     data.facebook_email = res.email;
@@ -119,6 +121,9 @@ $(document).ready(function () {
         FB.login(function (response) {
             $('.login-alert-popup').removeClass("popup-show");
             setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
+        }, {
+            scope: 'email', 
+            return_scopes: true
         });
     });
 
