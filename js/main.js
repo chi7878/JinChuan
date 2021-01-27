@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const id = "164404645116448";
-    const returnHomeLink = "https://www.2020-21taiwanhotspring.net/";
+    const returnHomeLink = "https://chi7878.github.io/JinChuan/";
     const apiTitle = "https://www.2020-21taiwanhotspring.net";
     let hasLogin = false;
     const lastDay = "2021/03/31";
