@@ -1,6 +1,5 @@
 $(document).ready(function () {
     const id = "164404645116448";
-    const returnHomeLink = "https://chi7878.github.io/JinChuan/";
     const apiTitle = "https://www.2020-21taiwanhotspring.net";
     let hasLogin = false;
     const lastDay = "2021/03/31";
@@ -75,8 +74,6 @@ $(document).ready(function () {
             return;
         } else {
             FB.getLoginStatus((response) => {
-                console.log(response);
-
                 switch (response.status) {
                     case "not_authorized":
                     case "unknown":
@@ -119,14 +116,9 @@ $(document).ready(function () {
     });
 
     $(".login-alert-popup__button").click(() => {
-        /*window.location = encodeURI(
-            `https://www.facebook.com/dialog/oauth?client_id=${id}&redirect_uri=${
-            encodeURI(returnHomeLink)}&response_type=token&scope=email`
-        );*/
-        
         FB.login(function (response) {
-           document.querySelector('.login-alert-popup').classList.remove("popup-show");
-           setTimeout(() => document.querySelector(".login-alert-popup").style.display = "none", 400);
+            $('.login-alert-popup').removeClass("popup-show");
+            setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
         });
     });
 
@@ -220,13 +212,5 @@ $(document).ready(function () {
             }
         });
     }
-
-    $('.fblogin').click(function(){
-        this.getLogin();
-    });
 });
 
-function checkLoginState() {
-    document.querySelector('.login-alert-popup').classList.remove("popup-show");
-    setTimeout(() => document.querySelector(".login-alert-popup").style.display = "none", 400);
-}

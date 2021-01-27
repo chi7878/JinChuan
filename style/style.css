@@ -227,6 +227,10 @@ p, h1, h2, h3, h4, a, li {
     display: flex;
     align-items: center;
     height: 100% !important;
+}    
+
+.main-nav__item > h2 {
+    font-size: 0;
 }
 
 @media screen and (max-width: 768px) {

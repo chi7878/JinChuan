@@ -245,8 +245,10 @@
     font-size: 20px;
 }
 
-.fb-login-button {
-    margin-top: 20px;
+.login-alert-popup__text-alert {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #ff4d4d;
 }
 
 .login-alert-popup__button {
@@ -254,12 +256,11 @@
     height: 30px;
     border: 0;
     background-color:#1877f2; 
-    /* #4267b2; */
     border-radius: 5px;
     color: #fff;
     cursor: pointer;
     outline: none;
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-around;
