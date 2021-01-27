@@ -167,19 +167,23 @@ $(document).ready(function () {
                 checkVote(id);
             },
             error: function (error) {
+                $(".login-vote-popup__loading").hide();
+                $(".login-vote-popup-success").hide();
+                $(".login-vote-popup-error").show();
+                
                 if (error.responseJSON && error.responseJSON.message === "Unknow facebook user") {
-                    $(".login-vote-popup__loading").hide();
-                    $(".login-vote-popup-success").hide();
-                    $(".login-vote-popup-error").show();
                     $(".login-vote-popup__text").text(`Facebook登入錯誤請重整!!`);
-                    $(".login-vote-popup").css({ display: "block" });
-                    setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
-        
-                    setTimeout(() => {
-                        $(".login-vote-popup").removeClass("popup-show");
-                        setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
-                    }, 3000);
+                } else {
+                    $(".login-vote-popup__text").text(`Facebook系統錯誤!!`);
                 }
+                
+                $(".login-vote-popup").css({ display: "block" });
+                setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+
+                setTimeout(() => {
+                    $(".login-vote-popup").removeClass("popup-show");
+                    setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
+                }, 3000);
             }
         });
     }
