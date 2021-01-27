@@ -130,9 +130,9 @@ $(document).ready(function () {
         setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
     });
 
-    // if (window.location.href.indexOf("#access_token=") !== -1) {
-    //     window.location.href = returnHomeLink;
-    // }
+    if (window.location.href.indexOf("#access_token=") !== -1) {
+        window.location.href = returnHomeLink;
+    }
 
 
     function getHotspring() {
