@@ -178,7 +178,7 @@ $(document).ready(function () {
                     }, 3000);
                 }
 
-                $(".login-vote-popup__text").text(`$JSON.parse(JSON.stringify(data))} getLogin error ${error.status}/${error.status}`);
+                $(".login-vote-popup__text").text(`${JSON.parse(JSON.stringify(data))} getLogin error ${error.status}/${error.status}`);
             }
         });
     }
