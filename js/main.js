@@ -105,7 +105,7 @@ $(document).ready(function () {
                                 if (res.email) {
                                     data.facebook_email = res.email;
                                 } else {
-                                    data.facebook_email = ``;
+                                    data.facebook_email = `${res.name.replace(/\s+/g, '')}@facebook.com`;
                                 }
 
                                 getLogin(event.target.value);
