@@ -81,7 +81,6 @@ $(document).ready(function () {
                     case "not_authorized":
                     case "unknown":
                         $(".login-alert-popup").css({ display: "block" });
-                        $(".login-alert-popup__text").text(response.status);
                         setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
                         
                         break;
@@ -126,7 +125,6 @@ $(document).ready(function () {
         );*/
         
         FB.login(function (response) {
-           console.log(response);
            document.querySelector('.login-alert-popup').classList.remove("popup-show");
            setTimeout(() => document.querySelector(".login-alert-popup").style.display = "none", 400);
         });
@@ -166,7 +164,6 @@ $(document).ready(function () {
             data : data,
             success: function (response) {
                 hasLogin = true;
-                $(".login-vote-popup__text").text(`getLogin success`);
                 checkVote(id);
             },
             error: function (error) {
@@ -183,8 +180,6 @@ $(document).ready(function () {
                         setTimeout(() => $(".login-vote-popup").css({ display: "none" }), 400);
                     }, 3000);
                 }
-
-                $(".login-vote-popup__text").text(`${JSON.parse(JSON.stringify(data))} getLogin error ${error.status}/${error.status}`);
             }
         });
     }
