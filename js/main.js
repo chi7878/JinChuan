@@ -119,9 +119,6 @@ $(document).ready(function () {
         FB.login(function (response) {
             $('.login-alert-popup').removeClass("popup-show");
             setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
-        }, {
-            scope: 'email', 
-            return_scopes: true
         });
     });
 
