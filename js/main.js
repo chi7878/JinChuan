@@ -122,9 +122,6 @@ $(document).ready(function () {
             $('.login-alert-popup').removeClass("popup-show");
             $(".main-footer__text").text(JSON.stringify(response));
             setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
-        }, {
-            scope: 'email', 
-            return_scopes: true
         });
     });
 
