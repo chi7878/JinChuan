@@ -82,6 +82,8 @@ $(document).ready(function () {
                         checkVote(event.target.value);
                     } else {
                         $(".login-alert-popup").css({ display: "block" });
+                        $(".login-alert-popup__text").text(response.status);
+                  
                         setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
                     }
                 }
@@ -91,6 +93,7 @@ $(document).ready(function () {
 
     $(".login-alert-popup__button").click(() => {
         FB.login(function (response) {
+<<<<<<< HEAD
             FB.api("/me?fields=name,id,email,picture", (res) => {
                 console.log(res);
 
@@ -110,6 +113,11 @@ $(document).ready(function () {
         }, {
             scope: 'email', 
             return_scopes: true
+=======
+            $('.login-alert-popup').removeClass("popup-show");
+            $(".main-footer__text").text(JSON.stringify(response));
+            setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
+>>>>>>> 8d67bc9e68fa8988d96692927976c5d42e0ccce4
         });
     });
 
