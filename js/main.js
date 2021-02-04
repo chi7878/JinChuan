@@ -79,6 +79,12 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (response) {
                     if (response.isLogin) {
+                        $(".login-vote-popup-success").hide();
+                        $(".login-vote-popup-error").hide();
+                        $(".login-vote-popup__loading").show();
+                        $(".login-vote-popup__text").text(`投票中...`);
+                        $(".login-vote-popup").css({ display: "block" });
+                        setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
                         checkVote(event.target.value);
                     } else {
                         $(".login-alert-popup").css({ display: "block" });
