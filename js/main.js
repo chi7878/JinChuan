@@ -73,40 +73,52 @@ $(document).ready(function () {
 
             return;
         } else {
-            $.ajax({
-                type: "GET",
-                url: `${apiTitle}/getLoginStatus`,
-                dataType: "json",
-                success: function (response) {
-                    if (response.isLogin) {
-                        checkVote(event.target.value);
-                    } else {
+            FB.getLoginStatus((response) => {
+                switch (response.status) {
+                    case "not_authorized":
+                    case "unknown":
                         $(".login-alert-popup").css({ display: "block" });
                         setTimeout(() => $(".login-alert-popup").addClass("popup-show"), 0);
-                    }
+                        
+                        break;
+                    default:
+                        $(".login-vote-popup-success").hide();
+                        $(".login-vote-popup-error").hide();
+                        $(".login-vote-popup__loading").show();
+                        $(".login-vote-popup__text").text(`投票中...`);
+                        $(".login-vote-popup").css({ display: "block" });
+                        setTimeout(() => $(".login-vote-popup").addClass("popup-show"), 0);
+                
+                        if (hasLogin) {
+                            checkVote(event.target.value);
+                        } else {
+
+                            FB.api("/me?fields=name,id,email,picture", (res) => {
+                                data.facebook_id = res.id;
+                                data.facebook_name = res.name;
+                                data.facebook_avatar = res.picture.data.url;
+                                data.facebook_token = response.authResponse.accessToken;
+
+                                if (res.email) {
+                                    data.facebook_email = res.email;
+                                } else {
+                                    data.facebook_email = `${res.name.replace(/\s+/g, '')}@facebook.com`;
+                                }
+
+                                getLogin(event.target.value);
+                            });
+                        }
+    
+                        break;
                 }
-            });
+            }, {scope: 'email'});
         }
     });
 
     $(".login-alert-popup__button").click(() => {
         FB.login(function (response) {
-            FB.api("/me?fields=name,id,email,picture", (res) => {
-                console.log(res);
-
-                data.facebook_id = res.id;
-                data.facebook_name = res.name;
-                data.facebook_avatar = res.picture.data.url;
-                data.facebook_token = response.authResponse.accessToken;
-
-                if (res.email) {
-                    data.facebook_email = res.email;
-                } else {
-                    data.facebook_email = `${res.name.replace(/\s+/g, '')}@facebook.com`;
-                }
-
-                getLogin();
-            });
+            $('.login-alert-popup').removeClass("popup-show");
+            setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);
         }, {
             scope: 'email', 
             return_scopes: true
@@ -139,19 +151,17 @@ $(document).ready(function () {
         });
     }
 
-    function getLogin() {
+    function getLogin(id) {
         $.ajax({
             type: "POST",
             url: `${apiTitle}/user_login`,
             dataType: "json",
             data : data,
             success: function (response) {
-                $('.login-alert-popup').removeClass("popup-show");
-                setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);    
+                hasLogin = true;
+                checkVote(id);
             },
             error: function (error) {
-                $('.login-alert-popup').removeClass("popup-show");
-                setTimeout(() => $(".login-alert-popup").css({ display: "none" }), 400);    
                 $(".login-vote-popup__loading").hide();
                 $(".login-vote-popup-success").hide();
                 $(".login-vote-popup-error").show();
@@ -210,4 +220,3 @@ $(document).ready(function () {
 if (navigator.userAgent.indexOf("Line") > -1) {
     window.location.href = `${window.location.href}?openExternalBrowser=1`;
 }
-
