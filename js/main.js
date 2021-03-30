@@ -2,7 +2,7 @@ $(document).ready(function () {
     const id = "164404645116448";
     const apiTitle = "https://www.2020-21taiwanhotspring.net";
     let hasLogin = false;
-    const lastDay = "2021/03/31";
+    const lastDay = 1617163200000;
     const data = {};
 
     getHotspring();
