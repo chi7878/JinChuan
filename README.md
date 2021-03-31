@@ -7,7 +7,7 @@
 ## Link
 
 投票網址(截止日至3/31)  
-[http://2020-21taiwanhotspring.net/](http://2020-21taiwanhotspring.net/)
+[https://2020-21taiwanhotspring.net/](https://2020-21taiwanhotspring.net/)
 
 or 
 
